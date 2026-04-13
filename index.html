@@ -64,6 +64,29 @@
             transform: translateY(40px);
         }
 
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-fade {
+            opacity: 0;
+            animation: fadeUp 0.7s ease forwards;
+        }
+
+        .hero-fade-d1 { animation-delay: 0s; }
+        .hero-fade-d2 { animation-delay: 0.2s; }
+        .hero-fade-d3 { animation-delay: 0.4s; }
+        .hero-fade-d4 { animation-delay: 0.6s; }
+        .hero-fade-d5 { animation-delay: 0.8s; }
+        .hero-fade-d6 { animation-delay: 1.0s; }
+
         /* ========== ANNOUNCEMENT BAR ========== */
         .announcement {
             position: fixed;
@@ -1704,18 +1727,18 @@
         <div class="hero-glow"></div>
         <div class="hero-particles" id="heroParticles"></div>
         <div class="hero-content">
-            <div class="hero-badge reveal">&#10022; Web Design for Construction Businesses</div>
-            <h1 class="reveal">
-                <span class="hero-line-thin">Unlock Your</span>
-                <span class="hero-line-accent">Contract-Winning</span>
-                <span class="hero-line-thin">Online Presence</span>
+            <div class="hero-badge hero-fade hero-fade-d1">&#10022; Web Design for Construction Businesses</div>
+            <h1>
+                <span class="hero-line-thin hero-fade hero-fade-d2">Unlock Your</span>
+                <span class="hero-line-accent hero-fade hero-fade-d3">Contract-Winning</span>
+                <span class="hero-line-thin hero-fade hero-fade-d4">Online Presence</span>
             </h1>
-            <p class="hero-sub reveal">Professional websites for roofers, contractors, HVAC companies, and more. We build it. You win more jobs.</p>
-            <div class="hero-buttons reveal">
+            <p class="hero-sub hero-fade hero-fade-d5">Professional websites for roofers, contractors, HVAC companies, and more. We build it. You win more jobs.</p>
+            <div class="hero-buttons hero-fade hero-fade-d5">
                 <a href="#contact" class="btn-hero-primary">Get a Free Quote</a>
                 <a href="#work" class="btn-hero-secondary">View Our Work</a>
             </div>
-            <div class="hero-trust reveal">
+            <div class="hero-trust hero-fade hero-fade-d6">
                 <span>&#10003; No commitment preview</span><span class="sep">|</span><span>&#10003; 48hr turnaround</span><span class="sep">|</span><span>&#10003; Starting at $299</span>
             </div>
         </div>
@@ -2186,32 +2209,7 @@
         // GSAP scroll animations
         gsap.registerPlugin(ScrollTrigger);
 
-        // Hero stagger — lines animate in on load
-        const heroLines = document.querySelectorAll('.hero-line-thin, .hero-line-accent');
-        gsap.fromTo(heroLines,
-            { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', stagger: 0.2, delay: 0.2 }
-        );
-
-        // Hero badge
-        gsap.fromTo('.hero-badge',
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', delay: 0.1 }
-        );
-
-        // Hero CTAs + trust strip after headline
-        gsap.fromTo('.hero-buttons',
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', delay: 0.8 }
-        );
-        gsap.fromTo('.hero-trust',
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', delay: 1.0 }
-        );
-        gsap.fromTo('.hero-sub',
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', delay: 0.7 }
-        );
+        // Hero animations handled by pure CSS @keyframes fadeUp
 
         // Work cards — stagger 0.15s
         gsap.fromTo('.work-card',
