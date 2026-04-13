@@ -7,7 +7,7 @@
     <meta name="description" content="UC35 builds professional websites for construction businesses — roofers, contractors, HVAC, plumbers, and more. Starting at $299. Built to win contracts.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
     <style>
         /* ========== RESET & BASE ========== */
         *, *::before, *::after {
@@ -36,7 +36,7 @@
             background-color: var(--bg-dark);
             color: var(--text-primary);
             font-size: 16px;
-            line-height: 1.6;
+            line-height: 1.75;
             overflow-x: hidden;
         }
 
@@ -60,10 +60,29 @@
             transform: translateY(40px);
         }
 
+        /* ========== ANNOUNCEMENT BAR ========== */
+        .announcement {
+            background: var(--accent);
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1001;
+        }
+
+        .announcement p {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 0.3px;
+        }
+
         /* ========== 1. NAVIGATION ========== */
         .nav {
             position: fixed;
-            top: 0;
+            top: 37px;
             left: 0;
             width: 100%;
             z-index: 1000;
@@ -166,43 +185,53 @@
 
         .hero-glow {
             position: absolute;
-            top: 30%;
+            top: 40%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(232, 119, 34, 0.07) 0%, transparent 65%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(232, 119, 34, 0.1) 0%, transparent 60%);
             pointer-events: none;
+            animation: glowPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
             text-align: center;
-            max-width: 760px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 160px 0 100px;
+            padding: 200px 0 140px;
         }
 
         .hero h1 {
-            font-size: 56px;
-            font-weight: 800;
-            line-height: 1.06;
-            margin-bottom: 24px;
+            font-size: 80px;
+            font-weight: 400;
+            line-height: 1.05;
+            margin-bottom: 28px;
         }
 
-        .hero h1 span {
+        .hero h1 .hero-accent {
+            display: block;
             color: var(--accent);
+            font-weight: 800;
+            font-style: italic;
         }
 
         .hero p {
-            font-size: 18px;
+            font-size: 20px;
             color: var(--text-secondary);
-            margin-bottom: 40px;
-            max-width: 600px;
+            margin-bottom: 48px;
+            max-width: 620px;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.7;
+            line-height: 1.8;
+            letter-spacing: 0.2px;
         }
 
         .btn {
@@ -293,11 +322,11 @@
 
         /* ========== 4. PORTFOLIO ========== */
         .portfolio {
-            padding: 80px 0;
+            padding: 120px 0;
         }
 
         .section-header {
-            margin-bottom: 48px;
+            margin-bottom: 56px;
         }
 
         .section-label {
@@ -310,7 +339,7 @@
         }
 
         .section-title {
-            font-size: 36px;
+            font-size: 40px;
             font-weight: 700;
             margin-bottom: 14px;
         }
@@ -324,7 +353,7 @@
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            gap: 32px;
         }
 
         .portfolio-card {
@@ -337,17 +366,59 @@
 
         .portfolio-card:hover {
             border-color: var(--accent);
-            box-shadow: 0 0 32px rgba(232, 119, 34, 0.1);
-            transform: translateY(-4px);
+            box-shadow: 0 0 32px rgba(232, 119, 34, 0.12);
+            transform: translateY(-6px);
         }
 
-        .portfolio-preview {
-            height: 200px;
+        /* Browser mockup frame */
+        .browser-frame {
+            background: #111111;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .browser-chrome {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .browser-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .browser-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .browser-dots span:nth-child(1) { background: #FF5F57; }
+        .browser-dots span:nth-child(2) { background: #FFBD2E; }
+        .browser-dots span:nth-child(3) { background: #28CA41; }
+
+        .browser-url {
+            flex: 1;
+            background: #0D0D0D;
+            border-radius: 4px;
+            padding: 5px 12px;
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-family: 'Inter', monospace;
+            margin-left: 8px;
+        }
+
+        .browser-content {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
-            overflow: hidden;
         }
 
-        .portfolio-preview-bg {
+        .browser-content-inner {
             width: 100%;
             height: 100%;
             display: flex;
@@ -355,26 +426,26 @@
             justify-content: center;
             font-size: 14px;
             font-weight: 600;
-            color: var(--text-secondary);
             letter-spacing: 2px;
             text-transform: uppercase;
         }
 
-        .preview-steele {
-            background: linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 50%, #0D0D0D 100%);
+        .preview-steele .browser-content-inner {
+            background: #0D0D0D;
+            color: var(--text-secondary);
             border-bottom: 3px solid #E87722;
         }
 
-        .preview-ironridge {
-            background: linear-gradient(135deg, #FFFFFF 0%, #F3F4F6 50%, #FFFFFF 100%);
-            border-bottom: 3px solid #EA580C;
+        .preview-ironridge .browser-content-inner {
+            background: #FFFFFF;
             color: #4B5563;
+            border-bottom: 3px solid #EA580C;
         }
 
-        .preview-peakline {
-            background: linear-gradient(135deg, #FFFFFF 0%, #F9FAFB 50%, #FFFFFF 100%);
-            border-bottom: 3px solid #DC2626;
+        .preview-peakline .browser-content-inner {
+            background: #FFFFFF;
             color: #4B5563;
+            border-bottom: 3px solid #DC2626;
         }
 
         .portfolio-body {
@@ -400,13 +471,13 @@
         .portfolio-card p {
             font-size: 14px;
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.7;
             margin-bottom: 20px;
         }
 
         /* ========== 5. PRICING ========== */
         .pricing {
-            padding: 80px 0;
+            padding: 120px 0;
             border-top: 1px solid var(--border);
         }
 
@@ -422,7 +493,7 @@
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            gap: 32px;
         }
 
         .pricing-card {
@@ -512,9 +583,64 @@
             justify-content: center;
         }
 
+        /* ========== 5.5 FEATURES GRID ========== */
+        .features {
+            padding: 120px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .features .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .features .section-subtitle {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .feature-tile {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 32px 24px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .feature-tile:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 24px rgba(232, 119, 34, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .feature-emoji {
+            font-size: 32px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .feature-tile h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .feature-tile p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
         /* ========== 6. CONTACT ========== */
         .contact {
-            padding: 80px 0;
+            padding: 120px 0;
             border-top: 1px solid var(--border);
         }
 
@@ -531,7 +657,7 @@
         .contact-text p {
             color: var(--text-secondary);
             margin-bottom: 32px;
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
         .contact-detail {
@@ -607,21 +733,23 @@
 
         /* ========== 7. FOOTER ========== */
         .footer {
-            padding: 40px 0;
+            padding: 60px 0 40px;
             border-top: 1px solid var(--border);
             text-align: center;
         }
 
         .footer-logo {
-            font-size: 20px;
+            font-size: 28px;
             font-weight: 800;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
         }
 
         .footer-tagline {
-            font-size: 14px;
+            font-size: 15px;
             color: var(--text-secondary);
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            letter-spacing: 0.3px;
         }
 
         .footer-copy {
@@ -632,11 +760,15 @@
         /* ========== RESPONSIVE ========== */
         @media (max-width: 1024px) {
             .hero h1 {
-                font-size: 44px;
+                font-size: 60px;
             }
 
             .portfolio-grid,
             .pricing-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .features-grid {
                 grid-template-columns: 1fr 1fr;
             }
 
@@ -664,25 +796,33 @@
         }
 
         @media (max-width: 768px) {
+            .announcement p {
+                font-size: 11px;
+            }
+
             .hero h1 {
-                font-size: 36px;
+                font-size: 48px;
             }
 
             .hero p {
-                font-size: 16px;
+                font-size: 17px;
             }
 
             .hero-content {
-                padding: 130px 0 70px;
+                padding: 160px 0 90px;
             }
 
             .section-title {
-                font-size: 28px;
+                font-size: 30px;
             }
 
             .portfolio-grid,
             .pricing-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
             }
 
             .form-row {
@@ -723,7 +863,7 @@
 
         @media (max-width: 480px) {
             .hero h1 {
-                font-size: 28px;
+                font-size: 36px;
             }
 
             .pricing-price {
@@ -733,10 +873,19 @@
             .stat-num {
                 font-size: 24px;
             }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- ========== ANNOUNCEMENT BAR ========== -->
+    <div class="announcement">
+        <p>Now accepting new clients — Websites starting at $299</p>
+    </div>
 
     <!-- ========== 1. NAVIGATION ========== -->
     <nav class="nav" id="nav">
@@ -762,7 +911,7 @@
         <div class="hero-glow"></div>
         <div class="container">
             <div class="hero-content">
-                <h1 class="reveal">We Build Websites That<br><span>Win Contracts</span></h1>
+                <h1 class="reveal">We Build Websites That<span class="hero-accent">Win Contracts</span></h1>
                 <p class="reveal">Professional web design for construction businesses — roofers, contractors, HVAC, and more. Starting at $299.</p>
                 <a href="#contact" class="btn btn-primary reveal">Get a Free Quote</a>
             </div>
@@ -799,8 +948,14 @@
             </div>
             <div class="portfolio-grid">
                 <div class="portfolio-card reveal">
-                    <div class="portfolio-preview">
-                        <div class="portfolio-preview-bg preview-steele">Steele &amp; Sons</div>
+                    <div class="browser-frame preview-steele">
+                        <div class="browser-chrome">
+                            <div class="browser-dots"><span></span><span></span><span></span></div>
+                            <div class="browser-url">steeleandsons.com</div>
+                        </div>
+                        <div class="browser-content">
+                            <div class="browser-content-inner">Steele &amp; Sons</div>
+                        </div>
                     </div>
                     <div class="portfolio-body">
                         <span class="portfolio-tag">General Contracting</span>
@@ -810,8 +965,14 @@
                     </div>
                 </div>
                 <div class="portfolio-card reveal">
-                    <div class="portfolio-preview">
-                        <div class="portfolio-preview-bg preview-ironridge">Ironridge Roofing</div>
+                    <div class="browser-frame preview-ironridge">
+                        <div class="browser-chrome">
+                            <div class="browser-dots"><span></span><span></span><span></span></div>
+                            <div class="browser-url">ironridgeroofing.com</div>
+                        </div>
+                        <div class="browser-content">
+                            <div class="browser-content-inner">Ironridge Roofing</div>
+                        </div>
                     </div>
                     <div class="portfolio-body">
                         <span class="portfolio-tag">Roofing &amp; Restoration</span>
@@ -821,8 +982,14 @@
                     </div>
                 </div>
                 <div class="portfolio-card reveal">
-                    <div class="portfolio-preview">
-                        <div class="portfolio-preview-bg preview-peakline">PeakLine HVAC</div>
+                    <div class="browser-frame preview-peakline">
+                        <div class="browser-chrome">
+                            <div class="browser-dots"><span></span><span></span><span></span></div>
+                            <div class="browser-url">peaklinehvac.com</div>
+                        </div>
+                        <div class="browser-content">
+                            <div class="browser-content-inner">PeakLine HVAC</div>
+                        </div>
                     </div>
                     <div class="portfolio-body">
                         <span class="portfolio-tag">HVAC &amp; Plumbing</span>
@@ -884,6 +1051,58 @@
                         <li><span class="pricing-check">&#10003;</span> 2 rounds of revisions</li>
                     </ul>
                     <a href="#contact" class="btn btn-outline">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 5.5 FEATURES GRID ========== -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label reveal">Why UC35</p>
+                <h2 class="section-title reveal">Everything You Need to Look Professional Online</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-tile reveal">
+                    <span class="feature-emoji">&#9889;</span>
+                    <h3>48hr Turnaround</h3>
+                    <p>From deposit to live preview</p>
+                </div>
+                <div class="feature-tile reveal">
+                    <span class="feature-emoji">&#128241;</span>
+                    <h3>Mobile Responsive</h3>
+                    <p>Looks great on every device</p>
+                </div>
+                <div class="feature-tile reveal">
+                    <span class="feature-emoji">&#128269;</span>
+                    <h3>SEO Ready</h3>
+                    <p>Built to be found on Google</p>
+                </div>
+                <div class="feature-tile reveal">
+                    <span class="feature-emoji">&#127912;</span>
+                    <h3>Free Preview</h3>
+                    <p>See it before you commit</p>
+                </div>
+                <div class="feature-tile reveal">
+                    <span class="feature-emoji">&#128187;</span>
+                    <h3>Code Ownership</h3>
+                    <p>You own everything we build</p>
+                </div>
+                <div class="feature-tile reveal">
+                    <span class="feature-emoji">&#128274;</span>
+                    <h3>Licensed &amp; Secure</h3>
+                    <p>Clean, safe, standards-compliant</p>
+                </div>
+                <div class="feature-tile reveal">
+                    <span class="feature-emoji">&#128260;</span>
+                    <h3>2 Rounds of Revisions</h3>
+                    <p>Until it's right</p>
+                </div>
+                <div class="feature-tile reveal">
+                    <span class="feature-emoji">&#128222;</span>
+                    <h3>Direct Communication</h3>
+                    <p>No middlemen, no delays</p>
                 </div>
             </div>
         </div>
