@@ -163,6 +163,13 @@ Every client site must follow this section order:
 - Never begin building without deposit received
 - No refunds after delivery of preview link
 
+**Client Intake Form:**
+https://docs.google.com/forms/d/e/1FAIpQLScVUOaZKNIltD0pJV_QttC3cmuO2NLRzyVn2zbBVf8m62Z_Dw/viewform?usp=publish-editor
+
+Send this form to every client immediately
+after receiving the 50% deposit via Zelle.
+Do not begin building until form is submitted.
+
 ---
 
 ## Client Communication

@@ -9,6 +9,15 @@ HTML site following all rules in CLAUDE.md.
 When Ayyub says "build site for [client name]" — read this
 file and execute.
 
+## Intake Form
+UC35 Client Intake Form:
+https://docs.google.com/forms/d/e/1FAIpQLScVUOaZKNIltD0pJV_QttC3cmuO2NLRzyVn2zbBVf8m62Z_Dw/viewform?usp=publish-editor
+
+Always send this to the client after
+deposit is received. Wait for submission
+before building. All build info comes
+from this form.
+
 ## What You Need Before Building
 - Business name
 - Business niche (roofing, HVAC, contracting, etc.)
