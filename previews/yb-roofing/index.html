@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y&amp;B Roofing Inc. — 5-Star Roofers in Chicago, IL</title>
+    <meta name="description" content="Y&amp;B Roofing Inc. provides fast roof repairs, full replacements, and interior damage repair in Chicago. 5.0-star rated with 163+ five-star reviews. Winter service available.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ========== RESET & BASE ========== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-base: #0D0D0D;
+            --bg-card: #1A1A1A;
+            --bg-elevated: #242424;
+            --text-primary: #FFFFFF;
+            --text-secondary: #A0A0A0;
+            --accent: #E87722;
+            --accent-hover: #F18A3A;
+            --border-subtle: #2A2A2A;
+            --radius-card: 12px;
+            --radius-btn: 4px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Barlow', sans-serif;
+            background: var(--bg-base);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+
+        /* ========== NAV ========== */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(13, 13, 13, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 18px;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-logo-mark {
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .nav-logo-mark::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background: var(--bg-base);
+            transform: translate(-50%, -50%);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: var(--text-primary) !important;
+            padding: 10px 20px;
+            border-radius: var(--radius-btn);
+            font-weight: 600 !important;
+            letter-spacing: 0.02em;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            position: relative;
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 24px 80px;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 20% 30%, rgba(232, 119, 34, 0.28) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 60% at 80% 70%, rgba(232, 119, 34, 0.15) 0%, transparent 60%),
+                linear-gradient(180deg, #0D0D0D 0%, #080808 100%);
+            z-index: 0;
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 64px 64px;
+            z-index: 0;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(232, 119, 34, 0.12);
+            border: 1px solid rgba(232, 119, 34, 0.35);
+            color: #F5A55D;
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 .accent {
+            color: var(--accent);
+        }
+
+        .hero-sub {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 680px;
+            margin: 0 auto 40px;
+            line-height: 1.5;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 28px;
+            border-radius: var(--radius-btn);
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: transform 0.2s ease, filter 0.2s ease, background 0.2s ease;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.15);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-primary);
+            border-color: var(--border-subtle);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--accent);
+            background: rgba(232, 119, 34, 0.08);
+        }
+
+        /* ========== SECTION HEADS ========== */
+        .section-head {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 64px;
+        }
+
+        .section-kicker {
+            display: inline-block;
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .section-head h2 {
+            font-size: 40px;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .section-head p {
+            color: var(--text-secondary);
+            font-size: 17px;
+        }
+
+        /* ========== SERVICES ========== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-card);
+            padding: 36px 28px;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .service-icon {
+            width: 52px;
+            height: 52px;
+            background: rgba(232, 119, 34, 0.12);
+            border: 1px solid rgba(232, 119, 34, 0.3);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 22px;
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        /* ========== ABOUT ========== */
+        .about-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .about-copy h2 {
+            font-size: 40px;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+        }
+
+        .about-copy p {
+            color: var(--text-secondary);
+            font-size: 17px;
+            margin-bottom: 18px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .stat-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-left: 3px solid var(--accent);
+            border-radius: var(--radius-card);
+            padding: 28px 32px;
+        }
+
+        .stat-num {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--accent);
+            letter-spacing: -0.02em;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* ========== TESTIMONIALS ========== */
+        .testimonials {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .quote-card {
+            background: var(--bg-base);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-card);
+            padding: 36px 32px;
+            transition: border-color 0.3s ease;
+        }
+
+        .quote-card:hover {
+            border-color: var(--accent);
+        }
+
+        .quote-stars {
+            color: #FFB547;
+            font-size: 16px;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+        }
+
+        .quote-text {
+            font-size: 17px;
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin-bottom: 22px;
+            font-weight: 400;
+        }
+
+        .quote-author {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .quote-location {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* ========== CONTACT ========== */
+        .contact-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .contact-info h2 {
+            font-size: 36px;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            font-size: 17px;
+            margin-bottom: 28px;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+            font-size: 17px;
+        }
+
+        .contact-info-item .icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(232, 119, 34, 0.12);
+            border: 1px solid rgba(232, 119, 34, 0.3);
+            border-radius: 10px;
+            font-size: 18px;
+        }
+
+        .contact-form {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-card);
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .contact-form input,
+        .contact-form select,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg-base);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-btn);
+            color: var(--text-primary);
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.2s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form select:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent);
+            color: var(--text-primary);
+            border: none;
+            border-radius: var(--radius-btn);
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-family: inherit;
+            transition: filter 0.2s ease, transform 0.2s ease;
+        }
+
+        .contact-form button:hover {
+            filter: brightness(1.15);
+            transform: translateY(-2px);
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: #080808;
+            border-top: 1px solid var(--border-subtle);
+            padding: 48px 24px 32px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-weight: 800;
+            font-size: 18px;
+            letter-spacing: -0.01em;
+        }
+
+        .footer-contact {
+            color: var(--text-secondary);
+            font-size: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copy {
+            color: var(--text-secondary);
+            font-size: 13px;
+            width: 100%;
+            text-align: center;
+            padding-top: 24px;
+            margin-top: 24px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 900px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-wrap {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-wrap {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .hero h1 {
+                font-size: 42px;
+            }
+            .section-head h2,
+            .about-copy h2 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+            .nav-toggle {
+                display: block;
+            }
+            .nav-links.open {
+                display: flex;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                left: 0;
+                flex-direction: column;
+                background: var(--bg-base);
+                border-bottom: 1px solid var(--border-subtle);
+                padding: 20px 24px;
+                gap: 18px;
+            }
+            section {
+                padding: 64px 0;
+            }
+            .hero {
+                padding: 100px 24px 60px;
+                min-height: auto;
+            }
+            .hero h1 {
+                font-size: 34px;
+            }
+            .hero-sub {
+                font-size: 16px;
+            }
+            .hero-ctas {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn {
+                justify-content: center;
+            }
+            .section-head h2,
+            .about-copy h2,
+            .contact-info h2 {
+                font-size: 28px;
+            }
+            .stat-num {
+                font-size: 32px;
+            }
+            .contact-form {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== NAV ========== -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#home" class="nav-logo">
+                <div class="nav-logo-mark"></div>
+                <span>Y&amp;B Roofing</span>
+            </a>
+            <button class="nav-toggle" aria-label="Menu">&#9776;</button>
+            <div class="nav-links" id="navLinks">
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#contact" class="nav-cta">Get a Quote</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-content">
+            <div class="hero-badge reveal">&#9733; 5.0 Rated &middot; 163+ Five-Star Reviews</div>
+            <h1 class="reveal">Chicago's Roof Pros.<br><span class="accent">Rain, Snow, or Shine.</span></h1>
+            <p class="hero-sub reveal">Y&amp;B Roofing Inc. handles roof repairs, full replacements, and interior damage across Chicago &mdash; even in winter when other crews won't show up. Fast response, fair pricing, flawless work.</p>
+            <div class="hero-ctas reveal">
+                <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
+                <a href="#services" class="btn btn-ghost">View Our Work</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SERVICES ========== -->
+    <section id="services">
+        <div class="container">
+            <div class="section-head reveal">
+                <span class="section-kicker">What We Do</span>
+                <h2>Full-Service Roofing for Chicago Homeowners</h2>
+                <p>From emergency leak repairs to full roof replacements and the ceiling work that follows &mdash; Y&amp;B handles it all under one roof.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">&#128295;</div>
+                    <h3>Roof Repair</h3>
+                    <p>Fast, professional roof repairs &mdash; leak damage, raccoon damage, and emergency fixes. Same-day response available across Chicago.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">&#8962;</div>
+                    <h3>Roof Replacement</h3>
+                    <p>High-quality materials and precise installation. Every replacement gets the same outstanding workmanship that earned us 163+ five-star reviews.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">&#127968;</div>
+                    <h3>Ceiling &amp; Interior Repair</h3>
+                    <p>When a roof leak damages your ceiling or drywall, we handle the full repair inside and out &mdash; so you only deal with one contractor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section id="about">
+        <div class="container">
+            <div class="about-wrap">
+                <div class="about-copy reveal">
+                    <span class="section-kicker">About Y&amp;B Roofing</span>
+                    <h2>Owner-Led. Chicago-Proud. Working When Others Won't.</h2>
+                    <p>Y&amp;B Roofing Inc. is owned and operated by Mr. Sanchez &mdash; a Chicago roofer who shows up in the cold, the rain, and the middle of winter when other contractors turn jobs away. That work ethic is why we've built a 5.0-star reputation across the city.</p>
+                    <p>Based out of 3314 S Leavitt St, we've been serving Chicago homeowners since 2010 &mdash; one honest estimate, one clean jobsite, one happy neighbor at a time.</p>
+                </div>
+                <div class="stats-grid reveal">
+                    <div class="stat-box">
+                        <div class="stat-num">5.0&#9733;</div>
+                        <div class="stat-label">Google Rating from Chicago Homeowners</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num">163+</div>
+                        <div class="stat-label">Five-Star Reviews &amp; Counting</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num">2010</div>
+                        <div class="stat-label">Serving Chicago Since Day One</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS ========== -->
+    <section class="testimonials" id="reviews">
+        <div class="container">
+            <div class="section-head reveal">
+                <span class="section-kicker">What Clients Say</span>
+                <h2>Real Work. Real Chicago Neighbors. Real Reviews.</h2>
+                <p>163 five-star reviews and counting &mdash; here's what homeowners across Chicago have to say about Y&amp;B Roofing.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="quote-card reveal">
+                    <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="quote-text">"We needed our roof done in winter &mdash; most companies wouldn't help. Y&amp;B came through, handled everything including the ceiling repair, and delivered great results."</p>
+                    <div class="quote-author">Deneen G.</div>
+                    <div class="quote-location">Chicago, IL</div>
+                </div>
+                <div class="quote-card reveal">
+                    <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="quote-text">"Responsive and professional from the first call. The crew arrived on time, assessed everything clearly, and delivered outstanding work. Would hire again."</p>
+                    <div class="quote-author">Barb B.</div>
+                    <div class="quote-location">Chicago, IL</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-wrap">
+                <div class="contact-info reveal">
+                    <span class="section-kicker">Get In Touch</span>
+                    <h2>Free Estimates. Honest Answers. Fast Response.</h2>
+                    <p>Tell us about your project and we'll get back to you quickly. Leaking roof or storm damage? Call us now &mdash; we work year-round.</p>
+                    <div class="contact-info-item">
+                        <div class="icon">&#128222;</div>
+                        <a href="tel:7734952021">(773) 495-2021</a>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="icon">&#128205;</div>
+                        <span>3314 S Leavitt St, Chicago, IL 60608</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="icon">&#9200;</div>
+                        <span>Year-Round Service &middot; Winter Work Welcome</span>
+                    </div>
+                </div>
+                <form class="contact-form reveal" onsubmit="event.preventDefault(); alert('Thanks — we\'ll be in touch shortly.');">
+                    <input type="text" name="name" placeholder="Full Name" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
+                    <select name="service" required>
+                        <option value="" disabled selected>Select a Service...</option>
+                        <option value="roof-repair">Roof Repair</option>
+                        <option value="roof-replacement">Roof Replacement</option>
+                        <option value="ceiling-interior">Ceiling &amp; Interior Repair</option>
+                        <option value="other">Something Else</option>
+                    </select>
+                    <textarea name="message" placeholder="Tell us about your project..." rows="4" required></textarea>
+                    <button type="submit">Request a Free Quote</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-logo">Y&amp;B Roofing Inc.</div>
+            <div class="footer-contact">
+                <a href="tel:7734952021">(773) 495-2021</a>
+                <span>3314 S Leavitt St, Chicago, IL</span>
+            </div>
+            <div class="footer-copy">&copy; 2026 Y&amp;B Roofing Inc. All rights reserved. Serving Chicago since 2010.</div>
+        </div>
+    </footer>
+
+    <!-- ========== GSAP ========== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        /* Hero reveals fire on load */
+        gsap.utils.toArray('.hero .reveal').forEach((el, i) => {
+            gsap.fromTo(el,
+                { opacity: 0, y: 24 },
+                { opacity: 1, y: 0, duration: 0.8, delay: 0.1 + i * 0.1, ease: 'power2.out' }
+            );
+        });
+
+        /* Scroll reveals */
+        gsap.utils.toArray('.reveal').forEach((el) => {
+            if (el.closest('.hero')) return;
+            gsap.fromTo(el,
+                { opacity: 0, y: 24 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 85%',
+                        once: true
+                    }
+                }
+            );
+        });
+
+        /* Mobile nav toggle */
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.getElementById('navLinks');
+        navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+        navLinks.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => navLinks.classList.remove('open'));
+        });
+    </script>
+</body>
+</html>
