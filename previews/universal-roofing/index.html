@@ -7,9 +7,8 @@
     <meta name="description" content="Universal Roofing delivers expert roof replacements, repairs, and emergency service in Normal &amp; Bloomington, IL. 4.9-star rated. 34+ five-star reviews. Professional, fast, spotless.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* ========== RESET & BASE ========== */
         *, *::before, *::after {
             margin: 0;
             padding: 0;
@@ -17,40 +16,30 @@
         }
 
         :root {
-            --bg-base: #0D0D0D;
-            --bg-card: #1A1A1A;
-            --bg-elevated: #242424;
-            --text-primary: #FFFFFF;
-            --text-secondary: #A0A0A0;
             --accent: #C0392B;
-            --accent-hover: #D94838;
-            --border-subtle: #2A2A2A;
-            --radius-card: 12px;
-            --radius-btn: 4px;
+            --accent-hover: #A63021;
+            --text: #1A1A1A;
+            --text-muted: #6B7280;
+            --bg: #FFFFFF;
+            --bg-soft: #F8F9FA;
+            --border: #E5E7EB;
+            --charcoal: #111827;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', 'Barlow', sans-serif;
-            background: var(--bg-base);
-            color: var(--text-primary);
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--bg);
             font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
 
         .container {
             max-width: 1200px;
@@ -58,9 +47,7 @@
             padding: 0 24px;
         }
 
-        section {
-            padding: 80px 0;
-        }
+        section { padding: 96px 0; }
 
         .reveal {
             opacity: 0;
@@ -71,18 +58,18 @@
         .nav {
             position: sticky;
             top: 0;
-            z-index: 1000;
-            background: rgba(13, 13, 13, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-subtle);
+            z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
         }
 
         .nav-inner {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 18px 24px;
+            padding: 16px 24px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -94,13 +81,14 @@
             font-weight: 800;
             font-size: 18px;
             letter-spacing: -0.01em;
+            color: var(--text);
         }
 
         .nav-logo-mark {
-            width: 28px;
-            height: 28px;
+            width: 30px;
+            height: 30px;
             background: var(--accent);
-            border-radius: 4px;
+            border-radius: 6px;
             position: relative;
         }
 
@@ -111,47 +99,45 @@
             left: 50%;
             width: 10px;
             height: 10px;
-            background: var(--bg-base);
+            background: #fff;
             transform: translate(-50%, -50%);
+            border-radius: 2px;
         }
 
         .nav-links {
             display: flex;
-            gap: 36px;
+            gap: 32px;
             align-items: center;
         }
 
         .nav-links a {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 500;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             transition: color 0.2s ease;
         }
 
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
+        .nav-links a:hover { color: var(--text); }
 
         .nav-cta {
             background: var(--accent);
-            color: var(--text-primary) !important;
+            color: #fff !important;
             padding: 10px 20px;
-            border-radius: var(--radius-btn);
+            border-radius: 6px;
             font-weight: 600 !important;
-            letter-spacing: 0.02em;
-            transition: transform 0.2s ease, filter 0.2s ease;
+            transition: background 0.2s ease, transform 0.2s ease;
         }
 
         .nav-cta:hover {
+            background: var(--accent-hover);
             transform: translateY(-2px);
-            filter: brightness(1.1);
         }
 
         .nav-toggle {
             display: none;
             background: none;
             border: none;
-            color: var(--text-primary);
+            color: var(--text);
             font-size: 24px;
             cursor: pointer;
         }
@@ -159,135 +145,188 @@
         /* ========== HERO ========== */
         .hero {
             position: relative;
-            min-height: 92vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 120px 24px 80px;
+            justify-content: center;
             overflow: hidden;
+            text-align: center;
         }
 
-        .hero-bg {
+        .hero-img {
             position: absolute;
             inset: 0;
-            background:
-                radial-gradient(ellipse 60% 50% at 20% 30%, rgba(192, 57, 43, 0.28) 0%, transparent 60%),
-                radial-gradient(ellipse 50% 60% at 80% 70%, rgba(192, 57, 43, 0.15) 0%, transparent 60%),
-                linear-gradient(180deg, #0D0D0D 0%, #080808 100%);
+            background: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=2400') center/cover no-repeat;
             z-index: 0;
         }
 
-        .hero-grid {
+        .hero-overlay {
             position: absolute;
             inset: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 64px 64px;
-            z-index: 0;
-            mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+            background: rgba(0,0,0,0.6);
+            z-index: 1;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 900px;
+            max-width: 780px;
+            padding: 120px 24px 80px;
             margin: 0 auto;
-            text-align: center;
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(192, 57, 43, 0.12);
-            border: 1px solid rgba(192, 57, 43, 0.35);
-            color: #E87265;
-            padding: 8px 16px;
+            gap: 6px;
+            background: #fff;
+            color: var(--accent);
+            padding: 8px 18px;
             border-radius: 40px;
             font-size: 13px;
-            font-weight: 500;
-            margin-bottom: 28px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
         }
 
         .hero h1 {
             font-size: 56px;
             font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -0.025em;
-            margin-bottom: 24px;
-        }
-
-        .hero h1 .accent {
-            color: var(--accent);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: #fff;
+            margin-bottom: 18px;
         }
 
         .hero-sub {
-            font-size: 20px;
-            color: var(--text-secondary);
+            font-size: 18px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+            margin-bottom: 36px;
             max-width: 680px;
-            margin: 0 auto 40px;
-            line-height: 1.5;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-ctas {
             display: flex;
-            gap: 14px;
-            justify-content: center;
+            gap: 12px;
             flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 32px;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             padding: 16px 28px;
-            border-radius: var(--radius-btn);
+            border-radius: 6px;
             font-size: 15px;
             font-weight: 600;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
             cursor: pointer;
-            border: 1px solid transparent;
-            transition: transform 0.2s ease, filter 0.2s ease, background 0.2s ease;
+            border: 2px solid transparent;
+            transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
             font-family: inherit;
+            letter-spacing: 0.01em;
         }
 
         .btn-primary {
             background: var(--accent);
-            color: var(--text-primary);
+            color: #fff;
         }
 
         .btn-primary:hover {
+            background: var(--accent-hover);
             transform: translateY(-2px);
-            filter: brightness(1.15);
         }
 
         .btn-ghost {
             background: transparent;
-            color: var(--text-primary);
-            border-color: var(--border-subtle);
+            color: #fff;
+            border-color: rgba(255,255,255,0.7);
         }
 
         .btn-ghost:hover {
-            border-color: var(--accent);
-            background: rgba(192, 57, 43, 0.08);
+            background: #fff;
+            color: var(--text);
+            transform: translateY(-2px);
+        }
+
+        .trust-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .trust-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .trust-item .check {
+            color: #F5A59A;
+            font-weight: 700;
+        }
+
+        .trust-divider {
+            width: 1px;
+            height: 14px;
+            background: rgba(255,255,255,0.3);
+            align-self: center;
+        }
+
+        /* ========== STATS ========== */
+        .stats {
+            padding: 72px 0;
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--accent);
+            letter-spacing: -0.02em;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-muted);
+            font-weight: 500;
         }
 
         /* ========== SECTION HEADS ========== */
         .section-head {
             text-align: center;
             max-width: 720px;
-            margin: 0 auto 64px;
+            margin: 0 auto 56px;
         }
 
         .section-kicker {
             display: inline-block;
             color: var(--accent);
             font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.12em;
+            font-weight: 700;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
         .section-head h2 {
@@ -295,64 +334,68 @@
             font-weight: 800;
             line-height: 1.15;
             letter-spacing: -0.02em;
-            margin-bottom: 16px;
+            color: var(--text);
+            margin-bottom: 14px;
         }
 
         .section-head p {
-            color: var(--text-secondary);
             font-size: 17px;
+            color: var(--text-muted);
         }
 
         /* ========== SERVICES ========== */
+        .services {
+            background: var(--bg-soft);
+        }
+
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 24px;
         }
 
         .service-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-card);
-            padding: 36px 28px;
-            transition: border-color 0.3s ease, transform 0.3s ease;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-top: 4px solid var(--accent);
+            border-radius: 12px;
+            padding: 36px 32px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .service-card:hover {
-            border-color: var(--accent);
             transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(17, 24, 39, 0.08);
         }
 
         .service-icon {
-            width: 52px;
-            height: 52px;
-            background: rgba(192, 57, 43, 0.12);
-            border: 1px solid rgba(192, 57, 43, 0.3);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            margin-bottom: 22px;
+            font-size: 32px;
+            margin-bottom: 16px;
         }
 
         .service-card h3 {
-            font-size: 20px;
-            font-weight: 600;
+            font-size: 22px;
+            font-weight: 700;
             margin-bottom: 10px;
             letter-spacing: -0.01em;
+            color: var(--text);
         }
 
         .service-card p {
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-size: 15px;
+            line-height: 1.6;
         }
 
         /* ========== ABOUT ========== */
+        .about {
+            background: #fff;
+        }
+
         .about-wrap {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 64px;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 72px;
             align-items: center;
         }
 
@@ -362,30 +405,36 @@
             line-height: 1.15;
             letter-spacing: -0.02em;
             margin-bottom: 20px;
+            color: var(--text);
         }
 
         .about-copy p {
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-size: 17px;
             margin-bottom: 18px;
+            line-height: 1.65;
         }
 
-        .stats-grid {
+        .about-copy p strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .about-stats {
             display: grid;
             grid-template-columns: 1fr;
             gap: 16px;
         }
 
-        .stat-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-left: 3px solid var(--accent);
-            border-radius: var(--radius-card);
-            padding: 28px 32px;
+        .about-stat {
+            background: var(--bg-soft);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            padding: 24px 28px;
         }
 
-        .stat-num {
-            font-size: 40px;
+        .about-stat-num {
+            font-size: 36px;
             font-weight: 800;
             color: var(--accent);
             letter-spacing: -0.02em;
@@ -393,18 +442,21 @@
             margin-bottom: 6px;
         }
 
-        .stat-label {
-            color: var(--text-secondary);
+        .about-stat-label {
             font-size: 15px;
+            color: var(--text-muted);
             font-weight: 500;
         }
 
         /* ========== TESTIMONIALS ========== */
         .testimonials {
-            background: var(--bg-card);
-            border-top: 1px solid var(--border-subtle);
-            border-bottom: 1px solid var(--border-subtle);
+            background: var(--accent);
+            color: #fff;
         }
+
+        .testimonials .section-head h2 { color: #fff; }
+        .testimonials .section-kicker { color: #F5C9C2; }
+        .testimonials .section-head p { color: rgba(255,255,255,0.88); }
 
         .testimonials-grid {
             display: grid;
@@ -413,47 +465,48 @@
         }
 
         .quote-card {
-            background: var(--bg-base);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-card);
+            background: #fff;
+            border-radius: 12px;
             padding: 36px 32px;
-            transition: border-color 0.3s ease;
-        }
-
-        .quote-card:hover {
-            border-color: var(--accent);
+            color: var(--text);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
         }
 
         .quote-stars {
-            color: #FFB547;
-            font-size: 16px;
+            color: #F5A623;
+            font-size: 18px;
             letter-spacing: 2px;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
 
         .quote-text {
             font-size: 17px;
-            color: var(--text-primary);
+            color: var(--text);
             line-height: 1.6;
-            margin-bottom: 22px;
+            margin-bottom: 24px;
             font-weight: 400;
         }
 
         .quote-author {
-            font-weight: 600;
+            font-weight: 700;
             font-size: 15px;
+            color: var(--text);
         }
 
         .quote-location {
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-size: 14px;
         }
 
         /* ========== CONTACT ========== */
+        .contact {
+            background: #fff;
+        }
+
         .contact-wrap {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 48px;
+            gap: 56px;
             max-width: 1100px;
             margin: 0 auto;
         }
@@ -463,40 +516,84 @@
             font-weight: 800;
             line-height: 1.15;
             letter-spacing: -0.02em;
+            color: var(--text);
             margin-bottom: 16px;
         }
 
-        .contact-info p {
-            color: var(--text-secondary);
+        .contact-info > p {
+            color: var(--text-muted);
             font-size: 17px;
-            margin-bottom: 28px;
+            margin-bottom: 32px;
+            line-height: 1.6;
         }
 
-        .contact-info-item {
+        .contact-phone-cta {
             display: flex;
             align-items: center;
             gap: 14px;
-            margin-bottom: 16px;
-            font-size: 17px;
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent);
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-bottom: 24px;
         }
 
-        .contact-info-item .icon {
-            width: 40px;
-            height: 40px;
+        .contact-phone-cta .icon {
+            width: 44px;
+            height: 44px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(192, 57, 43, 0.12);
-            border: 1px solid rgba(192, 57, 43, 0.3);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .contact-phone-cta .label {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+        }
+
+        .contact-phone-cta .number {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: -0.01em;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+            font-size: 16px;
+            color: var(--text);
+        }
+
+        .contact-item .icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(192,57,43,0.1);
             border-radius: 10px;
             font-size: 18px;
+            color: var(--accent);
+            flex-shrink: 0;
         }
 
         .contact-form {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-card);
-            padding: 32px;
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 36px;
             display: flex;
             flex-direction: column;
             gap: 14px;
@@ -507,13 +604,13 @@
         .contact-form textarea {
             width: 100%;
             padding: 14px 16px;
-            background: var(--bg-base);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-btn);
-            color: var(--text-primary);
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
             font-size: 15px;
             font-family: inherit;
-            transition: border-color 0.2s ease;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
         .contact-form input:focus,
@@ -521,6 +618,7 @@
         .contact-form textarea:focus {
             outline: none;
             border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(192,57,43,0.1);
         }
 
         .contact-form textarea {
@@ -532,28 +630,26 @@
             width: 100%;
             padding: 16px;
             background: var(--accent);
-            color: var(--text-primary);
+            color: #fff;
             border: none;
-            border-radius: var(--radius-btn);
+            border-radius: 6px;
             font-size: 15px;
             font-weight: 600;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
             cursor: pointer;
             font-family: inherit;
-            transition: filter 0.2s ease, transform 0.2s ease;
+            transition: background 0.2s ease, transform 0.2s ease;
         }
 
         .contact-form button:hover {
-            filter: brightness(1.15);
+            background: var(--accent-hover);
             transform: translateY(-2px);
         }
 
         /* ========== FOOTER ========== */
         .footer {
-            background: #080808;
-            border-top: 1px solid var(--border-subtle);
-            padding: 48px 24px 32px;
+            background: var(--charcoal);
+            color: rgba(255,255,255,0.75);
+            padding: 56px 24px 32px;
         }
 
         .footer-inner {
@@ -561,67 +657,76 @@
             margin: 0 auto;
             display: flex;
             flex-wrap: wrap;
-            gap: 24px;
+            gap: 32px;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
+        }
+
+        .footer-brand {
+            max-width: 340px;
         }
 
         .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-weight: 800;
             font-size: 18px;
-            letter-spacing: -0.01em;
+            color: #fff;
+            margin-bottom: 12px;
         }
 
-        .footer-contact {
-            color: var(--text-secondary);
+        .footer-tag {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .footer-col a,
+        .footer-col p {
+            display: block;
             font-size: 15px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 8px;
+            transition: color 0.2s ease;
         }
 
-        .footer-copy {
-            color: var(--text-secondary);
-            font-size: 13px;
-            width: 100%;
-            text-align: center;
+        .footer-col a:hover { color: #fff; }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
             padding-top: 24px;
-            margin-top: 24px;
-            border-top: 1px solid var(--border-subtle);
+            border-top: 1px solid rgba(255,255,255,0.12);
+            font-size: 13px;
+            color: rgba(255,255,255,0.55);
+            text-align: center;
         }
 
         /* ========== RESPONSIVE ========== */
         @media (max-width: 900px) {
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            .about-wrap {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-            .contact-wrap {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-            .hero h1 {
-                font-size: 42px;
-            }
+            .services-grid { grid-template-columns: 1fr; }
+            .about-wrap { grid-template-columns: 1fr; gap: 40px; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .contact-wrap { grid-template-columns: 1fr; gap: 32px; }
+            .hero h1 { font-size: 42px; }
             .section-head h2,
-            .about-copy h2 {
-                font-size: 32px;
-            }
+            .about-copy h2,
+            .contact-info h2 { font-size: 32px; }
         }
 
         @media (max-width: 640px) {
-            .nav-links {
-                display: none;
-            }
-            .nav-toggle {
-                display: block;
-            }
+            .nav-links { display: none; }
+            .nav-toggle { display: block; }
             .nav-links.open {
                 display: flex;
                 position: absolute;
@@ -629,42 +734,27 @@
                 right: 0;
                 left: 0;
                 flex-direction: column;
-                background: var(--bg-base);
-                border-bottom: 1px solid var(--border-subtle);
+                background: #fff;
+                border-bottom: 1px solid var(--border);
                 padding: 20px 24px;
                 gap: 18px;
             }
-            section {
-                padding: 64px 0;
-            }
-            .hero {
-                padding: 100px 24px 60px;
-                min-height: auto;
-            }
-            .hero h1 {
-                font-size: 34px;
-            }
-            .hero-sub {
-                font-size: 16px;
-            }
-            .hero-ctas {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .btn {
-                justify-content: center;
-            }
+            section { padding: 64px 0; }
+            .stats { padding: 56px 0; }
+            .hero { min-height: auto; }
+            .hero-content { padding: 110px 24px 80px; }
+            .hero h1 { font-size: 34px; }
+            .hero-sub { font-size: 16px; }
+            .hero-ctas { flex-direction: column; align-items: stretch; }
+            .btn { width: 100%; }
             .section-head h2,
             .about-copy h2,
-            .contact-info h2 {
-                font-size: 28px;
-            }
-            .stat-num {
-                font-size: 32px;
-            }
-            .contact-form {
-                padding: 24px;
-            }
+            .contact-info h2 { font-size: 28px; }
+            .stat-num { font-size: 36px; }
+            .stats-row { grid-template-columns: 1fr; gap: 24px; }
+            .contact-form { padding: 24px; }
+            .trust-row { gap: 12px; }
+            .trust-divider { display: none; }
         }
     </style>
 </head>
@@ -688,21 +778,48 @@
 
     <!-- ========== HERO ========== -->
     <section class="hero" id="home">
-        <div class="hero-bg"></div>
-        <div class="hero-grid"></div>
+        <div class="hero-img"></div>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <div class="hero-badge reveal">&#9733; 4.9 Rated &middot; 34+ Five-Star Reviews</div>
-            <h1 class="reveal">A New Roof in One Day.<br><span class="accent">Done Right the First Time.</span></h1>
-            <p class="hero-sub reveal">Universal Roofing delivers full tear-offs, fast repairs, and emergency service across Normal and Bloomington, IL. Professional crews, spotless cleanup, and fair pricing &mdash; every single job.</p>
+            <div class="hero-badge reveal">Bloomington-Normal, IL</div>
+            <h1 class="reveal">Roofing Done Right.<br>Every Single Time.</h1>
+            <p class="hero-sub reveal">Professional roof replacement and repair serving Normal and Bloomington, IL. Matt and his crew finish every job clean, on time, and to perfection.</p>
             <div class="hero-ctas reveal">
-                <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
-                <a href="#services" class="btn btn-ghost">View Our Work</a>
+                <a href="tel:3095322291" class="btn btn-primary">Call (309) 532-2291</a>
+                <a href="#contact" class="btn btn-ghost">Get Free Estimate</a>
+            </div>
+            <div class="trust-row reveal">
+                <span class="trust-item"><span class="check">&#10003;</span> 4.9 Stars</span>
+                <span class="trust-divider"></span>
+                <span class="trust-item"><span class="check">&#10003;</span> 34 Reviews</span>
+                <span class="trust-divider"></span>
+                <span class="trust-item"><span class="check">&#10003;</span> Detail-Oriented Crews</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== STATS ========== -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-row">
+                <div class="stat reveal">
+                    <div class="stat-num">4.9&#9733;</div>
+                    <div class="stat-label">Google Rating</div>
+                </div>
+                <div class="stat reveal">
+                    <div class="stat-num">34+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat reveal">
+                    <div class="stat-num">1 Day</div>
+                    <div class="stat-label">Most Jobs Completed</div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- ========== SERVICES ========== -->
-    <section id="services">
+    <section class="services" id="services">
         <div class="container">
             <div class="section-head reveal">
                 <span class="section-kicker">What We Do</span>
@@ -711,7 +828,7 @@
             </div>
             <div class="services-grid">
                 <div class="service-card reveal">
-                    <div class="service-icon">&#8962;</div>
+                    <div class="service-icon">&#127968;</div>
                     <h3>Roof Replacement</h3>
                     <p>Full tear-off and replacement completed in a single day by professional crews. Premium materials, protected landscaping, and a spotless cleanup before we leave.</p>
                 </div>
@@ -721,7 +838,7 @@
                     <p>Expert roof repairs handled quickly and done right. Clear communication from first call to final inspection &mdash; no surprises, no runaround.</p>
                 </div>
                 <div class="service-card reveal">
-                    <div class="service-icon">&#9888;</div>
+                    <div class="service-icon">&#128680;</div>
                     <h3>Emergency Services</h3>
                     <p>Storm damage or sudden leak? We respond fast to protect your home when it matters most &mdash; temporary coverage, honest assessment, and a clear plan forward.</p>
                 </div>
@@ -730,27 +847,27 @@
     </section>
 
     <!-- ========== ABOUT ========== -->
-    <section id="about">
+    <section class="about" id="about">
         <div class="container">
             <div class="about-wrap">
                 <div class="about-copy reveal">
                     <span class="section-kicker">About Universal Roofing</span>
                     <h2>Owner-Led. Detail-Driven. Trusted Across Bloomington-Normal.</h2>
-                    <p>Universal Roofing is run by Matt &mdash; a roofer who personally oversees every project from first estimate to final cleanup. That hands-on approach is why our reviews stay at 4.9 stars and why our neighbors keep recommending us to their friends.</p>
-                    <p>We protect your landscaping, we show up on time, and we leave your property cleaner than we found it. That's the Universal Roofing standard &mdash; and we hold every crew to it, every single job.</p>
+                    <p>Universal Roofing is run by <strong>Matt</strong> &mdash; a roofer who personally oversees every project from first estimate to final cleanup. That hands-on approach is why our reviews stay at 4.9 stars and why our neighbors keep recommending us to their friends.</p>
+                    <p>We protect your landscaping, we show up on time, and we leave your property cleaner than we found it. That's the Universal Roofing standard &mdash; fair pricing, no runaround, and work that lasts.</p>
                 </div>
-                <div class="stats-grid reveal">
-                    <div class="stat-box">
-                        <div class="stat-num">4.9&#9733;</div>
-                        <div class="stat-label">Google Rating from Local Homeowners</div>
+                <div class="about-stats reveal">
+                    <div class="about-stat">
+                        <div class="about-stat-num">4.9&#9733;</div>
+                        <div class="about-stat-label">Google Rating from Local Homeowners</div>
                     </div>
-                    <div class="stat-box">
-                        <div class="stat-num">34+</div>
-                        <div class="stat-label">Five-Star Reviews and Counting</div>
+                    <div class="about-stat">
+                        <div class="about-stat-num">34+</div>
+                        <div class="about-stat-label">Five-Star Reviews and Counting</div>
                     </div>
-                    <div class="stat-box">
-                        <div class="stat-num">100%</div>
-                        <div class="stat-label">Detail-Oriented Crews on Every Job</div>
+                    <div class="about-stat">
+                        <div class="about-stat-num">100%</div>
+                        <div class="about-stat-label">Detail-Oriented Crews on Every Job</div>
                     </div>
                 </div>
             </div>
@@ -783,22 +900,25 @@
     </section>
 
     <!-- ========== CONTACT ========== -->
-    <section id="contact">
+    <section class="contact" id="contact">
         <div class="container">
             <div class="contact-wrap">
                 <div class="contact-info reveal">
                     <span class="section-kicker">Get In Touch</span>
-                    <h2>Free Quotes. Fast Response. Honest Answers.</h2>
+                    <h2>Get Your Free Estimate Today</h2>
                     <p>Tell us about your project and we'll get back to you quickly. Emergency roof problem? Call us now &mdash; we respond fast.</p>
-                    <div class="contact-info-item">
-                        <div class="icon">&#128222;</div>
-                        <a href="tel:3095322291">(309) 532-2291</a>
-                    </div>
-                    <div class="contact-info-item">
-                        <div class="icon">&#128205;</div>
+                    <a href="tel:3095322291" class="contact-phone-cta">
+                        <div class="icon">&#9742;</div>
+                        <div>
+                            <div class="label">Call Direct</div>
+                            <div class="number">(309) 532-2291</div>
+                        </div>
+                    </a>
+                    <div class="contact-item">
+                        <div class="icon">&#9873;</div>
                         <span>Serving Normal, Bloomington &amp; Central IL</span>
                     </div>
-                    <div class="contact-info-item">
+                    <div class="contact-item">
                         <div class="icon">&#9200;</div>
                         <span>Mon&ndash;Sat &middot; 7:00 AM &ndash; 6:00 PM</span>
                     </div>
@@ -824,12 +944,28 @@
     <!-- ========== FOOTER ========== -->
     <footer class="footer">
         <div class="footer-inner">
-            <div class="footer-logo">Universal Roofing</div>
-            <div class="footer-contact">
-                <a href="tel:3095322291">(309) 532-2291</a>
-                <span>Bloomington-Normal, IL</span>
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <div class="nav-logo-mark"></div>
+                    Universal Roofing
+                </div>
+                <p class="footer-tag">Professional roof replacement, repair, and emergency service across Normal and Bloomington, IL. Owner-operated by Matt &mdash; 4.9 stars, 34+ five-star reviews.</p>
             </div>
-            <div class="footer-copy">&copy; 2026 Universal Roofing. All rights reserved. Serving Bloomington-Normal and Central Illinois.</div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <a href="#services">Roof Replacement</a>
+                <a href="#services">Roof Repair</a>
+                <a href="#services">Emergency Services</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="tel:3095322291">(309) 532-2291</a>
+                <p>Bloomington-Normal, IL</p>
+                <p>Mon&ndash;Sat &middot; 7AM&ndash;6PM</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Universal Roofing. All rights reserved. Serving Bloomington-Normal and Central Illinois.
         </div>
     </footer>
 
@@ -855,11 +991,11 @@
                 {
                     opacity: 1,
                     y: 0,
-                    duration: 0.8,
+                    duration: 0.7,
                     ease: 'power2.out',
                     scrollTrigger: {
                         trigger: el,
-                        start: 'top 85%',
+                        start: 'top 88%',
                         once: true
                     }
                 }
