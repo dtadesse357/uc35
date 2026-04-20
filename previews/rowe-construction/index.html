@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rowe Construction Co. — Bloomington, IL</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230D0A08'/><rect x='4' y='4' width='14' height='14' fill='%23E87722'/><rect x='14' y='14' width='14' height='14' fill='none' stroke='%23E87722' stroke-width='2' opacity='0.6'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy: #111010;
+    --navy2: #1a1918;
+    --navy3: #242220;
+    --offwhite: #F4F0E8;
+    --amber: #E8A020;
+    --amber-dim: #b87d18;
+    --mid: #6b6560;
+    --light: #c9c3b8;
+    --ff-head: 'Barlow Condensed', sans-serif;
+    --ff-body: 'Barlow', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--offwhite);
+    font-family: var(--ff-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── GRAIN OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 64px;
+    background: rgba(17,16,16,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(232,160,32,0.15);
+  }
+
+  .nav-logo {
+    font-family: var(--ff-head);
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: var(--offwhite);
+    text-transform: uppercase;
+  }
+
+  .nav-logo span { color: var(--amber); }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 36px;
+  }
+
+  nav ul li a {
+    font-family: var(--ff-head);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  nav ul li a:hover { color: var(--amber); }
+
+  .nav-cta {
+    background: var(--amber);
+    color: var(--navy) !important;
+    padding: 8px 20px;
+    font-weight: 700 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: #f0ae28 !important; color: var(--navy) !important; }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative;
+    height: 100vh;
+    min-height: 640px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('../images/rowe-hero.png') center/cover no-repeat;
+    transform: scale(1.04);
+    transition: transform 8s ease-out;
+  }
+
+  .hero-bg.loaded { transform: scale(1); }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(11,10,10,0.96) 0%,
+      rgba(11,10,10,0.65) 45%,
+      rgba(11,10,10,0.2) 100%
+    );
+  }
+
+  .hero-stripe {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 6px;
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--amber) 0px, var(--amber) 16px,
+      var(--navy) 16px, var(--navy) 32px
+    );
+    opacity: 0.85;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 80px 88px;
+    max-width: 1200px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
+  }
+
+  .hero-content.visible { opacity: 1; transform: translateY(0); }
+
+  .hero-eyebrow {
+    font-family: var(--ff-head);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--amber);
+  }
+
+  .hero-h1 {
+    font-family: var(--ff-head);
+    font-size: clamp(72px, 10vw, 128px);
+    font-weight: 900;
+    line-height: 0.9;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 28px;
+    color: var(--offwhite);
+  }
+
+  .hero-h1 em {
+    font-style: normal;
+    color: var(--amber);
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--light);
+    max-width: 520px;
+    margin-bottom: 36px;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--amber);
+    color: var(--navy);
+    font-family: var(--ff-head);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 14px 36px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: #f0ae28; transform: translateY(-1px); }
+
+  .btn-ghost {
+    border: 1.5px solid rgba(244,240,232,0.35);
+    color: var(--offwhite);
+    font-family: var(--ff-head);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 13px 32px;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
+
+  .hero-stats {
+    position: absolute;
+    bottom: 88px;
+    right: 80px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    opacity: 0;
+    transform: translateX(16px);
+    transition: opacity 0.8s ease 0.6s, transform 0.8s ease 0.6s;
+  }
+
+  .hero-stats.visible { opacity: 1; transform: translateX(0); }
+
+  .stat {
+    text-align: right;
+  }
+
+  .stat-num {
+    font-family: var(--ff-head);
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--amber);
+  }
+
+  .stat-label {
+    font-family: var(--ff-head);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 100px 80px; }
+
+  .section-eyebrow {
+    font-family: var(--ff-head);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 2px;
+    background: var(--amber);
+  }
+
+  .section-h2 {
+    font-family: var(--ff-head);
+    font-size: clamp(42px, 5vw, 72px);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    color: var(--offwhite);
+    margin-bottom: 24px;
+  }
+
+  .section-h2 em {
+    font-style: normal;
+    color: var(--amber);
+  }
+
+  /* ── SERVICES ── */
+  #services {
+    background: var(--navy2);
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .services-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 64px;
+  }
+
+  .services-desc {
+    font-size: 17px;
+    color: var(--light);
+    line-height: 1.75;
+    font-weight: 300;
+    max-width: 480px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+
+  .service-card {
+    background: var(--navy3);
+    padding: 32px 28px;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 3px;
+    background: var(--amber);
+    transition: width 0.35s ease;
+  }
+
+  .service-card:hover { background: #2a2826; }
+  .service-card:hover::after { width: 100%; }
+
+  .service-icon {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 16px;
+    opacity: 0.7;
+  }
+
+  .service-name {
+    font-family: var(--ff-head);
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--offwhite);
+    line-height: 1.2;
+  }
+
+  .service-tag {
+    margin-top: 8px;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--mid);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    padding: 120px 80px;
+  }
+
+  .about-img {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+  }
+
+  .about-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.7) contrast(1.1);
+  }
+
+  .about-img-badge {
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 120px; height: 120px;
+    background: var(--amber);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .badge-num {
+    font-family: var(--ff-head);
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .badge-label {
+    font-family: var(--ff-head);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .about-text p {
+    font-size: 17px;
+    color: var(--light);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .about-text p strong {
+    color: var(--offwhite);
+    font-weight: 600;
+  }
+
+  .about-highlights {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .highlight {
+    border-left: 3px solid var(--amber);
+    padding-left: 16px;
+  }
+
+  .highlight-val {
+    font-family: var(--ff-head);
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--offwhite);
+    line-height: 1;
+  }
+
+  .highlight-label {
+    font-size: 13px;
+    color: var(--mid);
+    margin-top: 4px;
+  }
+
+  /* ── REVIEWS ── */
+  #reviews {
+    background: var(--navy2);
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .reviews-top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 56px;
+  }
+
+  .reviews-score {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .score-big {
+    font-family: var(--ff-head);
+    font-size: 96px;
+    font-weight: 900;
+    color: var(--amber);
+    line-height: 1;
+  }
+
+  .score-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .stars {
+    display: flex;
+    gap: 4px;
+  }
+
+  .star {
+    width: 20px; height: 20px;
+    fill: var(--amber);
+  }
+
+  .star.half { fill: url(#halfGrad); }
+
+  .score-source {
+    font-size: 13px;
+    color: var(--mid);
+    letter-spacing: 0.05em;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .review-card {
+    background: var(--navy3);
+    padding: 36px 32px;
+  }
+
+  .reviewer-name {
+    font-family: var(--ff-head);
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--offwhite);
+    margin-bottom: 4px;
+  }
+
+  .reviewer-meta {
+    font-size: 12px;
+    color: var(--mid);
+    margin-bottom: 16px;
+  }
+
+  .review-stars { display: flex; gap: 3px; margin-bottom: 14px; }
+
+  .review-text {
+    font-size: 15px;
+    color: var(--light);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── SERVICE AREA MAP ── */
+  #area {
+    background: var(--navy);
+    padding: 100px 80px;
+  }
+
+  .area-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 64px;
+    align-items: start;
+    margin-top: 56px;
+  }
+
+  .area-map {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border: 1px solid rgba(232,160,32,0.2);
+    position: relative;
+  }
+
+  .area-map iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    filter: invert(0.88) hue-rotate(180deg) saturate(0.6) brightness(0.9);
+  }
+
+  .area-map-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(17,16,16,0.8);
+    padding: 8px 14px;
+    font-family: var(--ff-head);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  .area-list-title {
+    font-family: var(--ff-head);
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--offwhite);
+    margin-bottom: 24px;
+  }
+
+  .area-regions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .region {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    color: var(--light);
+  }
+
+  .region::before {
+    content: '';
+    display: block;
+    width: 8px; height: 8px;
+    background: var(--amber);
+    flex-shrink: 0;
+  }
+
+  .area-note {
+    font-size: 14px;
+    color: var(--mid);
+    line-height: 1.7;
+    border-left: 2px solid rgba(232,160,32,0.3);
+    padding-left: 16px;
+  }
+
+  /* ── CONTACT / CTA ── */
+  #contact {
+    background: var(--navy2);
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-top: 56px;
+    align-items: start;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .contact-item-label {
+    font-family: var(--ff-head);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 6px;
+  }
+
+  .contact-item-val {
+    font-family: var(--ff-head);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--offwhite);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-item-val:hover { color: var(--amber); }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-field label {
+    font-family: var(--ff-head);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    background: var(--navy3);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--offwhite);
+    font-family: var(--ff-body);
+    font-size: 15px;
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .form-field input::placeholder,
+  .form-field textarea::placeholder { color: var(--mid); }
+
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    border-color: var(--amber);
+  }
+
+  .form-field select option { background: var(--navy3); }
+
+  .form-field textarea { resize: vertical; min-height: 120px; }
+
+  .form-submit {
+    margin-top: 8px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0b0a0a;
+    padding: 40px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-logo {
+    font-family: var(--ff-head);
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--offwhite);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-logo span { color: var(--amber); }
+
+  .footer-copy {
+    font-size: 13px;
+    color: var(--mid);
+  }
+
+  /* ── ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── MOBILE RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    nav { padding: 0 24px; }
+    nav ul { gap: 20px; }
+    section { padding: 80px 40px; }
+    #about { grid-template-columns: 1fr; padding: 80px 40px; }
+    .services-header { grid-template-columns: 1fr; gap: 24px; }
+    .services-grid { grid-template-columns: repeat(3, 1fr); }
+    .area-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .hero-content { padding: 0 40px 72px; }
+    .hero-stats { right: 40px; bottom: 72px; }
+  }
+
+  @media (max-width: 768px) {
+    nav ul { display: none; }
+    section { padding: 64px 24px; }
+    .hero-content { padding: 0 24px 64px; }
+    .hero-h1 { font-size: clamp(48px, 12vw, 72px); }
+    .hero-sub { font-size: 16px; }
+    .hero-actions { flex-direction: column; align-items: stretch; }
+    .hero-stats { display: none; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .reviews-top { flex-direction: column; gap: 24px; align-items: flex-start; }
+    .score-big { font-size: 64px; }
+    .area-regions { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .contact-item-val { font-size: 22px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SVG defs for half-star -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="halfGrad" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="50%" stop-color="#E8A020"/>
+      <stop offset="50%" stop-color="#3a3633"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">Rowe<span>.</span></div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#area">Service Area</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-stripe"></div>
+
+  <div class="hero-content" id="heroContent">
+    <div class="hero-eyebrow">General Contractor · Bloomington, IL</div>
+    <h1 class="hero-h1">Built for<br><em>Heavy Work.</em></h1>
+    <p class="hero-sub">Bridges, highways, parking lots, and site development across Central Illinois. Municipal and commercial projects done right.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Request a Quote</a>
+      <a href="#services" class="btn-ghost">Our Services</a>
+    </div>
+  </div>
+
+  <div class="hero-stats" id="heroStats">
+    <div class="stat">
+      <div class="stat-num">4.5★</div>
+      <div class="stat-label">Google Rating</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">13</div>
+      <div class="stat-label">Service Types</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section id="services">
+  <div class="reveal services-header">
+    <div>
+      <div class="section-eyebrow">What We Do</div>
+      <h2 class="section-h2">Heavy<br><em>Civil</em> Work</h2>
+    </div>
+    <p class="services-desc">From bridge decks to asphalt highways, Rowe Construction brings the equipment and experience for large-scale commercial and municipal infrastructure projects.</p>
+  </div>
+
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 44 44" fill="none">
+        <rect x="0" y="32" width="44" height="4" fill="#E8A020"/>
+        <rect x="8" y="16" width="4" height="16" fill="#6b6560"/>
+        <rect x="32" y="16" width="4" height="16" fill="#6b6560"/>
+        <path d="M6 16 L22 4 L38 16" stroke="#c9c3b8" stroke-width="2.5" fill="none"/>
+        <line x1="12" y1="16" x2="32" y2="16" stroke="#E8A020" stroke-width="2"/>
+      </svg>
+      <div class="service-name">Bridge<br>Construction</div>
+      <div class="service-tag">Structures & Decks</div>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 44 44" fill="none">
+        <rect x="0" y="28" width="44" height="6" fill="#E8A020"/>
+        <rect x="0" y="34" width="44" height="6" fill="#6b6560"/>
+        <rect x="4" y="20" width="8" height="8" fill="#c9c3b8" opacity="0.5"/>
+        <rect x="18" y="14" width="8" height="14" fill="#c9c3b8" opacity="0.5"/>
+      </svg>
+      <div class="service-name">Highway<br>Construction</div>
+      <div class="service-tag">Roads & Pavement</div>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 44 44" fill="none">
+        <rect x="2" y="30" width="40" height="4" fill="#E8A020" rx="1"/>
+        <rect x="8" y="20" width="28" height="10" fill="#6b6560"/>
+        <rect x="14" y="14" width="16" height="6" fill="#c9c3b8" opacity="0.5"/>
+        <rect x="4" y="34" width="6" height="4" fill="#6b6560" rx="3"/>
+        <rect x="34" y="34" width="6" height="4" fill="#6b6560" rx="3"/>
+      </svg>
+      <div class="service-name">Asphalt<br>Paving</div>
+      <div class="service-tag">Pavement & Lots</div>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 44 44" fill="none">
+        <rect x="2" y="28" width="40" height="6" fill="#c9c3b8" opacity="0.5"/>
+        <rect x="2" y="34" width="40" height="6" fill="#E8A020" opacity="0.6"/>
+        <line x1="2" y1="28" x2="42" y2="28" stroke="#E8A020" stroke-width="2"/>
+        <rect x="8" y="18" width="28" height="10" fill="#6b6560"/>
+      </svg>
+      <div class="service-name">Concrete<br>Paving</div>
+      <div class="service-tag">Pads, Pours & Slabs</div>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 44 44" fill="none">
+        <path d="M4 36 Q12 20 22 28 Q32 36 40 18" stroke="#E8A020" stroke-width="2.5" fill="none"/>
+        <rect x="0" y="36" width="44" height="4" fill="#6b6560"/>
+        <circle cx="22" cy="28" r="3" fill="#E8A020"/>
+      </svg>
+      <div class="service-name">Site<br>Development</div>
+      <div class="service-tag">Grading & Layout</div>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 44 44" fill="none">
+        <rect x="4" y="36" width="36" height="4" fill="#E8A020"/>
+        <path d="M8 36 L8 20 L36 20 L36 36" stroke="#c9c3b8" stroke-width="1.5" fill="none"/>
+        <rect x="14" y="26" width="16" height="10" fill="#6b6560"/>
+        <path d="M4 20 L22 8 L40 20" stroke="#c9c3b8" stroke-width="2" fill="none"/>
+      </svg>
+      <div class="service-name">Parking<br>Lots</div>
+      <div class="service-tag">Asphalt & Striping</div>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 44 44" fill="none">
+        <path d="M6 38 C6 28 14 24 22 20 C30 24 38 28 38 38" stroke="#6b6560" stroke-width="1.5" fill="none"/>
+        <rect x="8" y="30" width="28" height="8" fill="#E8A020" opacity="0.4"/>
+        <path d="M12 30 L12 20 M22 30 L22 18 M32 30 L32 20" stroke="#E8A020" stroke-width="1.5"/>
+      </svg>
+      <div class="service-name">Dirt<br>Work</div>
+      <div class="service-tag">Excavation & Grading</div>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 44 44" fill="none">
+        <rect x="2" y="14" width="40" height="22" fill="#242220" stroke="#E8A020" stroke-width="1.5"/>
+        <rect x="8" y="20" width="10" height="10" fill="#6b6560"/>
+        <rect x="26" y="20" width="10" height="10" fill="#6b6560"/>
+        <rect x="2" y="36" width="40" height="4" fill="#E8A020"/>
+      </svg>
+      <div class="service-name">Bridge<br>Decks</div>
+      <div class="service-tag">Deck Systems</div>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 44 44" fill="none">
+        <rect x="4" y="30" width="36" height="6" fill="#c9c3b8" opacity="0.5" rx="1"/>
+        <rect x="2" y="36" width="40" height="4" fill="#E8A020"/>
+        <path d="M10 30 L10 14 L34 14 L34 30" stroke="#6b6560" stroke-width="1.5" fill="none"/>
+        <path d="M6 14 L22 4 L38 14" stroke="#c9c3b8" stroke-width="2" fill="none"/>
+      </svg>
+      <div class="service-name">Asphalt<br>Shingles</div>
+      <div class="service-tag">Commercial Roofing</div>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 44 44" fill="none">
+        <rect x="6" y="10" width="32" height="26" fill="#242220" stroke="#6b6560" stroke-width="1.5"/>
+        <rect x="10" y="14" width="10" height="18" fill="#E8A020" opacity="0.3"/>
+        <rect x="24" y="14" width="10" height="10" fill="#6b6560" opacity="0.5"/>
+        <rect x="0" y="36" width="44" height="4" fill="#E8A020"/>
+      </svg>
+      <div class="service-name">Concrete<br>Pads</div>
+      <div class="service-tag">Pours & Foundations</div>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 44 44" fill="none">
+        <circle cx="22" cy="22" r="16" stroke="#6b6560" stroke-width="1.5" fill="none"/>
+        <circle cx="22" cy="22" r="8" fill="#E8A020" opacity="0.3"/>
+        <line x1="22" y1="6" x2="22" y2="38" stroke="#E8A020" stroke-width="1"/>
+        <line x1="6" y1="22" x2="38" y2="22" stroke="#E8A020" stroke-width="1"/>
+      </svg>
+      <div class="service-name">Concrete<br>Pavement</div>
+      <div class="service-tag">Roads & Aprons</div>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 44 44" fill="none">
+        <path d="M4 40 L4 20 L10 14 L34 14 L40 20 L40 40" stroke="#6b6560" stroke-width="1.5" fill="none"/>
+        <rect x="18" y="28" width="8" height="12" fill="#E8A020" opacity="0.5"/>
+        <path d="M4 20 L40 20" stroke="#E8A020" stroke-width="2"/>
+        <path d="M2 40 L42 40" stroke="#c9c3b8" stroke-width="1.5"/>
+      </svg>
+      <div class="service-name">Concrete<br>Jobs</div>
+      <div class="service-tag">Commercial Flatwork</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="about-img reveal">
+    <img src="../images/rowe-hero.png" alt="Rowe Construction yard and equipment">
+    <div class="about-img-badge">
+      <div class="badge-num">IL</div>
+      <div class="badge-label">Licensed<br>& Bonded</div>
+    </div>
+  </div>
+  <div class="about-text reveal">
+    <div class="section-eyebrow">About Rowe</div>
+    <h2 class="section-h2">Central Illinois<br><em>Infrastructure</em></h2>
+    <p>Rowe Construction Co. is a <strong>Bloomington, Illinois general contractor</strong> specializing in heavy civil and municipal infrastructure. We operate the equipment, manage the crews, and deliver the results — from initial grading through final paving.</p>
+    <p>Our work spans <strong>highways, bridges, commercial paving, site development, and concrete work</strong> across Central Illinois. We partner with municipalities, developers, and commercial clients who need a contractor that shows up and gets it done.</p>
+    <div class="about-highlights">
+      <div class="highlight">
+        <div class="highlight-val">4.5★</div>
+        <div class="highlight-label">Google Rating</div>
+      </div>
+      <div class="highlight">
+        <div class="highlight-val">13</div>
+        <div class="highlight-label">Service Categories</div>
+      </div>
+      <div class="highlight">
+        <div class="highlight-val">IL</div>
+        <div class="highlight-label">Licensed & Insured</div>
+      </div>
+      <div class="highlight">
+        <div class="highlight-val">BLM</div>
+        <div class="highlight-label">Bloomington-Based</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── REVIEWS ── -->
+<section id="reviews">
+  <div class="reveal reviews-top">
+    <div>
+      <div class="section-eyebrow">Customer Reviews</div>
+      <h2 class="section-h2">What They<br><em>Say</em></h2>
+    </div>
+    <div class="reviews-score">
+      <div class="score-big">4.5</div>
+      <div class="score-detail">
+        <div class="stars">
+          <svg class="star" viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+          <svg class="star" viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+          <svg class="star" viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+          <svg class="star" viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+          <svg class="star half" viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+        </div>
+        <div class="score-source">11 Google Reviews · Bloomington, IL</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reviews-grid reveal">
+    <div class="review-card">
+      <div class="reviewer-name">Liliana Pelaez</div>
+      <div class="reviewer-meta">Local Guide · 157 reviews</div>
+      <div class="review-stars">
+        <svg class="star" width="14" height="14" viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+        <svg class="star" width="14" height="14" viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+        <svg class="star" width="14" height="14" viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+        <svg class="star" width="14" height="14" viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+        <svg class="star" width="14" height="14" viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+      </div>
+      <p class="review-text">"Excellent place and excellent people."</p>
+    </div>
+
+    <div class="review-card">
+      <div class="reviewer-name">Jared Gahm</div>
+      <div class="reviewer-meta">Local Guide · 207 reviews</div>
+      <div class="review-stars">
+        <svg class="star" width="14" height="14" viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+        <svg class="star" width="14" height="14" viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+        <svg class="star" width="14" height="14" viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+        <svg class="star" width="14" height="14" viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+        <svg class="star" width="14" height="14" viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+      </div>
+      <p class="review-text">"Great team environment, professional operation with serious equipment and capability."</p>
+    </div>
+
+    <div class="review-card">
+      <div class="reviewer-name">John Moore Sr</div>
+      <div class="reviewer-meta">Local Guide · 174 reviews</div>
+      <div class="review-stars">
+        <svg class="star" width="14" height="14" viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+        <svg class="star" width="14" height="14" viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+        <svg class="star" width="14" height="14" viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+        <svg class="star" width="14" height="14" viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+        <svg class="star half" width="14" height="14" viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+      </div>
+      <p class="review-text">"Solid contractor. Knows their way around a heavy job site."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICE AREA ── -->
+<section id="area">
+  <div class="reveal">
+    <div class="section-eyebrow">Where We Work</div>
+    <h2 class="section-h2">Central<br><em>Illinois</em></h2>
+  </div>
+
+  <div class="area-grid reveal">
+    <div class="area-map">
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-89.5%2C40.0%2C-88.2%2C40.9&layer=mapnik&marker=40.4842%2C-88.9937"
+        title="Service Area Map — Central Illinois"
+        loading="lazy">
+      </iframe>
+      <div class="area-map-label">Central Illinois — Bloomington, IL 61701</div>
+    </div>
+
+    <div>
+      <div class="area-list-title">Primary Service Region</div>
+      <div class="area-regions">
+        <div class="region">Bloomington / Normal</div>
+        <div class="region">McLean County</div>
+        <div class="region">Peoria Metro</div>
+        <div class="region">Springfield Area</div>
+        <div class="region">Champaign-Urbana</div>
+        <div class="region">Decatur</div>
+        <div class="region">Pontiac / Livingston</div>
+        <div class="region">Statewide Municipal</div>
+      </div>
+      <p class="area-note">Based at 1523 Cottage Ave, Bloomington, IL 61701. We work on municipal, IDOT, and commercial projects throughout Central Illinois. Contact us to discuss projects outside our primary service area.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="reveal">
+    <div class="section-eyebrow">Get in Touch</div>
+    <h2 class="section-h2">Request<br>a <em>Quote</em></h2>
+  </div>
+
+  <div class="contact-grid reveal">
+    <div class="contact-info">
+      <div>
+        <div class="contact-item-label">Phone</div>
+        <a href="tel:3098270091" class="contact-item-val">(309) 827-0091</a>
+      </div>
+      <div>
+        <div class="contact-item-label">Address</div>
+        <div class="contact-item-val" style="font-size:22px; line-height:1.4">1523 Cottage Ave<br>Bloomington, IL 61701</div>
+      </div>
+      <div>
+        <div class="contact-item-label">Services</div>
+        <div style="color: var(--light); font-size:15px; line-height:1.8">
+          Asphalt · Concrete · Bridges<br>
+          Highways · Site Development<br>
+          Parking Lots · Dirt Work
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form" action="https://formspree.io/f/mvzdgllp" method="POST" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-field">
+          <label>First Name</label>
+          <input type="text" name="first_name" placeholder="John">
+        </div>
+        <div class="form-field">
+          <label>Last Name</label>
+          <input type="text" name="last_name" placeholder="Smith">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Phone</label>
+          <input type="tel" name="phone" placeholder="(309) 555-0100">
+        </div>
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="you@company.com">
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Project Type</label>
+        <select name="project_type">
+          <option value="">Select a service...</option>
+          <option>Asphalt Paving</option>
+          <option>Concrete Paving / Flatwork</option>
+          <option>Bridge Construction / Deck</option>
+          <option>Highway Construction</option>
+          <option>Parking Lot</option>
+          <option>Site Development</option>
+          <option>Dirt Work / Grading</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Project Description</label>
+        <textarea name="message" placeholder="Brief description of scope, location, and timeline..."></textarea>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="btn-primary" style="width:100%; border:none; cursor:pointer; font-size:16px;">
+          Send Request →
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo">Rowe Construction<span>.</span></div>
+  <div class="footer-copy">1523 Cottage Ave · Bloomington, IL 61701 · (309) 827-0091</div>
+</footer>
+
+<script>
+  // ── HERO LOAD ANIMATION ──
+  window.addEventListener('load', () => {
+    const bg = document.getElementById('heroBg');
+    const content = document.getElementById('heroContent');
+    const stats = document.getElementById('heroStats');
+    bg.classList.add('loaded');
+    setTimeout(() => { content.classList.add('visible'); }, 200);
+    setTimeout(() => { stats.classList.add('visible'); }, 400);
+  });
+
+  // ── SCROLL REVEAL ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i * 0.1) + 's';
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── FORM SUBMIT ──
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('[type=submit]');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      });
+      if (res.ok) {
+        btn.textContent = 'Request Sent ✓';
+        btn.style.background = '#4a8a50';
+        setTimeout(() => form.reset(), 2000);
+      }
+    } catch(err) {
+      btn.textContent = 'Try Again';
+    }
+  }
+</script>
+</body>
+</html>
